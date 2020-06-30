@@ -23,6 +23,12 @@
              <param name="meses">Quantidade de meses de atraso</param>
              <returns>Valor total do juros</returns>
         </member>
+        <member name="M:SoftplanApi.Controllers.ShowMeTheCodeController.Get">
+            <summary>
+            Retorna a url do GitHub para este código fonte
+            </summary>
+            <returns>URL do código fonte</returns>
+        </member>
         <member name="M:SoftplanApi.Controllers.TaxaJurosController.Get">
             <summary>
             Retorna o valor da taxa de juros

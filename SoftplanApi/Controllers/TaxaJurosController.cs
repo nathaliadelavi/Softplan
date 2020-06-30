@@ -23,7 +23,6 @@ namespace SoftplanApi.Controllers
         /// <returns>Objeto com o valor da taxa de juros</returns>
         [HttpGet, AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public TaxaJuros Get()
         {

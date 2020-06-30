@@ -1,7 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Octokit;
 using SoftplanCore.ApiBoot;
+using SoftplanRule;
+using System;
+using System.IO;
+using System.Linq;
 
 namespace SoftplanApi.Controllers
 {
@@ -15,13 +21,22 @@ namespace SoftplanApi.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Retorna a url do GitHub para este código fonte
+        /// </summary>
+        /// <returns>URL do código fonte</returns>
         [HttpGet, AllowAnonymous]
-        [ProducesResponseType(typeof(string), 200)]
-        //[ProducesResponseType(typeof(CoreException<CoreError>), 400)]
-        //[ProducesResponseType(typeof(InternalError), 500)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public string Get()
         {
-            return "Nathalia P Delavi";
+            var caminhoRepository = AppDomain.CurrentDomain
+                .BaseDirectory.Split("SoftplanApi").FirstOrDefault();
+
+            var repositoryInfo = RepositoryInformation.GetRepositoryInformationForPath(caminhoRepository);
+
+            return repositoryInfo.Url;
         }
     }
 }

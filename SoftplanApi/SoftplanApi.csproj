@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Octokit" Version="0.48.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SoftplanCore.ApiBoot\SoftplanCore.ApiBoot.csproj" />
     <ProjectReference Include="..\SoftplanRule\SoftplanRule.csproj" />
   </ItemGroup>
