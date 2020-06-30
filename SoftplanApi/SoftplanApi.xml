@@ -17,11 +17,17 @@
                     "name": "Item1",
                     "isComplete": true
                  }
-            
+                 
              </remarks>
              <param name="valorOriginal">Valor original da dívida</param>
              <param name="meses">Quantidade de meses de atraso</param>
              <returns>Valor total do juros</returns>
+        </member>
+        <member name="M:SoftplanApi.Controllers.TaxaJurosController.Get">
+            <summary>
+            Retorna o valor da taxa de juros
+            </summary>
+            <returns>Objeto com o valor da taxa de juros</returns>
         </member>
     </members>
 </doc>

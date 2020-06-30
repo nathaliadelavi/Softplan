@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SoftplanCore.ApiBoot;
@@ -16,10 +17,14 @@ namespace SoftplanApi.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Retorna o valor da taxa de juros
+        /// </summary>
+        /// <returns>Objeto com o valor da taxa de juros</returns>
         [HttpGet, AllowAnonymous]
-        [ProducesResponseType(typeof(string), 200)]
-        //[ProducesResponseType(typeof(CoreException<CoreError>), 400)]
-        //[ProducesResponseType(typeof(InternalError), 500)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public TaxaJuros Get()
         {
             IJuros juros = new Juros();

@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
 using System.IO;
 using System.Reflection;
@@ -24,12 +26,32 @@ namespace SoftplanApi
             services.AddControllers();
             services.AddApiVersioning();
 
+            services.AddVersionedApiExplorer(options =>
+            {
+                // Formato
+                options.GroupNameFormat = "'v'V";
+                options.SubstituteApiVersionInUrl = true;
+            });
+
             // Swagger Generator
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
+                    Title = "Softplan API",
+                    Description = "Desafio técnico - Softplan",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Nathalia Delavi",
+                        Email = "nath.delavi@gmail.com",
+                        Url = new Uri("https://www.linkedin.com/in/nathalia-delavi-75116339"),
+                    }
+                });
+
+                c.SwaggerDoc("v2", new OpenApiInfo
+                {
+                    Version = "v2",
                     Title = "Softplan API",
                     Description = "Desafio técnico - Softplan",
                     Contact = new OpenApiContact
@@ -49,7 +71,8 @@ namespace SoftplanApi
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())
             {
@@ -63,7 +86,13 @@ namespace SoftplanApi
             });
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Softplan API");
+                foreach (var description in provider.ApiVersionDescriptions)
+                {
+                    c.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", 
+                        description.GroupName.ToUpperInvariant());
+                }
+
+                c.DocExpansion(DocExpansion.List);
             });
 
             app.UseRouting();
