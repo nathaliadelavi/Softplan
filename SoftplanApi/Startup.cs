@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.OpenApi.Models;
+using System;
 using System.IO;
+using System.Reflection;
 
 namespace SoftplanApi
 {
@@ -17,15 +19,36 @@ namespace SoftplanApi
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
             services.AddApiVersioning();
-            services.AddSwaggerGen();
+
+            // Swagger Generator
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Softplan API",
+                    Description = "Desafio técnico - Softplan",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Nathalia Delavi",
+                        Email = "nath.delavi@gmail.com",
+                        Url = new Uri("https://www.linkedin.com/in/nathalia-delavi-75116339"),
+                    }
+                });
+
+                // XML de comentários
+                var arquivoXml = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var pastaXml = Path.Combine(AppContext.BaseDirectory, arquivoXml);
+
+                // Habilitação dos comentários na versão 5+
+                c.IncludeXmlComments(pastaXml, includeControllerXmlComments: true);
+            });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

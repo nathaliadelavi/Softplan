@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SoftplanApi</name>
+    </assembly>
+    <members>
+        <member name="M:SoftplanApi.Controllers.CalculaJurosController.Post(System.Decimal,System.Int32)">
+             <summary>
+             Rota para calcular valor do juros pela quantidade de meses
+             </summary>
+             /// <remarks>
+             Sample request:
+            
+                 POST /Todo
+                 {
+                    "id": 1,
+                    "name": "Item1",
+                    "isComplete": true
+                 }
+            
+             </remarks>
+             <param name="valorOriginal">Valor original da dívida</param>
+             <param name="meses">Quantidade de meses de atraso</param>
+             <returns>Valor total do juros</returns>
+        </member>
+    </members>
+</doc>

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using SoftplanCore.ApiBoot;
 using Microsoft.AspNetCore.Authorization;
 using SoftplanRule;
+using Microsoft.AspNetCore.Http;
 
 namespace SoftplanApi.Controllers
 {
@@ -16,10 +17,27 @@ namespace SoftplanApi.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Rota para calcular valor do juros pela quantidade de meses
+        /// </summary>
+        /// /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST /Todo
+        ///     {
+        ///        "id": 1,
+        ///        "name": "Item1",
+        ///        "isComplete": true
+        ///     }
+        ///     
+        /// </remarks>
+        /// <param name="valorOriginal">Valor original da dívida</param>
+        /// <param name="meses">Quantidade de meses de atraso</param>
+        /// <returns>Valor total do juros</returns>
         [HttpPost, AllowAnonymous]
-        [ProducesResponseType(typeof(decimal), 200)]
-        //[ProducesResponseType(typeof(CoreException<CoreError>), 400)]
-        //[ProducesResponseType(typeof(InternalError), 500)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public decimal Post(decimal valorOriginal, int meses)
         {
             
