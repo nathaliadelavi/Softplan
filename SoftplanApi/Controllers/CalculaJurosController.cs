@@ -4,6 +4,9 @@ using SoftplanCore.ApiBoot;
 using Microsoft.AspNetCore.Authorization;
 using SoftplanRule;
 using Microsoft.AspNetCore.Http;
+using System.Net.Http;
+using System;
+using System.Net.Http.Headers;
 
 namespace SoftplanApi.Controllers
 {
@@ -20,17 +23,6 @@ namespace SoftplanApi.Controllers
         /// <summary>
         /// Rota para calcular valor do juros pela quantidade de meses
         /// </summary>
-        /// /// <remarks>
-        /// Sample request:
-        ///
-        ///     POST /Todo
-        ///     {
-        ///        "id": 1,
-        ///        "name": "Item1",
-        ///        "isComplete": true
-        ///     }
-        ///     
-        /// </remarks>
         /// <param name="valorOriginal">Valor original da dívida</param>
         /// <param name="meses">Quantidade de meses de atraso</param>
         /// <returns>Valor total do juros</returns>
@@ -40,7 +32,19 @@ namespace SoftplanApi.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public decimal Post(decimal valorOriginal, int meses)
         {
-            
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://localhost:64195/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+
+            TaxaJuros product = null;
+            HttpResponseMessage response = await client.GetAsync(path);
+            if (response.IsSuccessStatusCode)
+            {
+                product = await response.Content.ReadAsAsync<Product>();
+            }
+            return product;
 
             return 1.05M;
         }
