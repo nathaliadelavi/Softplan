@@ -30,9 +30,10 @@ namespace SoftplanApi.Controllers
         public string Get()
         {
             var caminhoRepository = AppDomain.CurrentDomain
-                .BaseDirectory.Split("SoftplanApi").FirstOrDefault();
+                .BaseDirectory.Split("Softplan").FirstOrDefault();
 
-            var repositoryInfo = RepositoryInformation.GetRepositoryInformationForPath(caminhoRepository);
+            var repositoryInfo = RepositoryInformation
+                .GetRepositoryInformationForPath(caminhoRepository);
 
             return repositoryInfo.Url;
         }

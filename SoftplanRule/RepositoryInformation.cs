@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SoftplanRule
 {
-    public class RepositoryInformation : IDisposable, IRepositoryInformation
+    public class RepositoryInformation : IDisposable
     {
         public static RepositoryInformation GetRepositoryInformationForPath(string path)
         {

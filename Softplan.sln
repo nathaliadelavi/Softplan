@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftplanApi", "SoftplanApi\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftplanRule", "SoftplanRule\SoftplanRule.csproj", "{C0ABD2BC-95C5-4633-B3AB-169E7A4C0F02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftplanXUnitTest", "SoftplanXUnitTest\SoftplanXUnitTest.csproj", "{51B8A28D-4D0E-42B1-83FC-0081C2F2D654}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftplanXUnitTest", "SoftplanXUnitTest\SoftplanXUnitTest.csproj", "{51B8A28D-4D0E-42B1-83FC-0081C2F2D654}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

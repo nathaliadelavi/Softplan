@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Server.IIS;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SoftplanCore.ApiBoot;
 using SoftplanRule;
-using System;
 using System.Net.Http;
-using System.Net.Http.Headers;
 
 namespace SoftplanApi.Controllers
 {
