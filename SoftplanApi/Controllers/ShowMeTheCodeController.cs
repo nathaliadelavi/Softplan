@@ -2,11 +2,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Octokit;
 using SoftplanCore.ApiBoot;
 using SoftplanRule;
 using System;
-using System.IO;
 using System.Linq;
 
 namespace SoftplanApi.Controllers

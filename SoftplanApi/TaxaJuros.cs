@@ -2,8 +2,14 @@ namespace SoftplanApi
 {
     public class TaxaJuros
     {
-        public decimal TaxaJurosDecimal { get; set; }
+        /// <summary>
+        /// Valor da taxa de juros em decimal
+        /// </summary>
+        public double TaxaJurosDecimal { get; set; }
 
-        public decimal TaxaJurosPercentagem { get; set; }
+        /// <summary>
+        /// Valor da taxa de juros em percentagem
+        /// </summary>
+        public double TaxaJurosPercentagem { get; set; }
     }
 }

@@ -2,11 +2,11 @@
 {
     public interface IJuros
     {
-        public decimal ValorTaxaJuros()
+        public double ValorTaxaJuros()
         {
             return 1;
         }
 
-        decimal CalcularJuros(decimal valorInicial, int meses);
+        double CalcularJuros(double valorOriginal, int meses, double taxaJuros);
     }
 }

@@ -1,30 +1,39 @@
 ﻿using NUnit.Framework;
 using SoftplanRule;
+using System;
+using System.Linq;
 
 namespace SoftplanTests
 {
     public class SoftplanRule_Tests
     {
-        IJuros juros = new Juros();
+        static IJuros juros = new Juros();
+        double valorInicial = 100;
+        int meses = 5;
+        double taxaJuros = juros.ValorTaxaJuros() / 100;
+        string caminhoRepository = AppDomain.CurrentDomain
+                .BaseDirectory.Split("SoftplanTests").FirstOrDefault();
 
-        [SetUp]
-        public void Setup()
+        [Theory]
+        public void CalcularJuros_Test()
         {
+            Assert.AreEqual(105.1, juros.CalcularJuros(valorInicial, meses, taxaJuros));
+            Assert.Zero(juros.CalcularJuros(0, meses, taxaJuros));
         }
 
-        [Test]
-        public void CalcularJuros_Success()
+        [Theory]
+        public void RetornaTaxaJuros_Test()
         {
-            var valorInicial = 1000M;
-            var meses = 10;
-
-            Assert.AreEqual(1, juros.CalcularJuros(valorInicial, meses));
+            Assert.AreEqual(1, taxaJuros * 100);
         }
 
-        [Test]
-        public void RetornaTaxaJuros_Success()
+        [Theory]
+        public void ShowMeTheCode_Test()
         {
-            Assert.AreEqual(1, juros.ValorTaxaJuros());
+            var esperado = RepositoryInformation
+                .GetRepositoryInformationForPath(caminhoRepository).Url;
+
+            Assert.IsTrue(!string.IsNullOrEmpty(esperado));
         }
     }
 }

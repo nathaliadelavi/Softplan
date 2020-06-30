@@ -4,24 +4,13 @@
         <name>SoftplanApi</name>
     </assembly>
     <members>
-        <member name="M:SoftplanApi.Controllers.CalculaJurosController.Post(System.Decimal,System.Int32)">
-             <summary>
-             Rota para calcular valor do juros pela quantidade de meses
-             </summary>
-             /// <remarks>
-             Sample request:
-            
-                 POST /Todo
-                 {
-                    "id": 1,
-                    "name": "Item1",
-                    "isComplete": true
-                 }
-                 
-             </remarks>
-             <param name="valorOriginal">Valor original da dívida</param>
-             <param name="meses">Quantidade de meses de atraso</param>
-             <returns>Valor total do juros</returns>
+        <member name="M:SoftplanApi.Controllers.CalculaJurosController.Post(System.Double,System.Int32)">
+            <summary>
+            Rota para calcular valor do juros pela quantidade de meses
+            </summary>
+            <param name="valorOriginal">Valor original da dívida</param>
+            <param name="meses">Quantidade de meses de atraso</param>
+            <returns>Valor total do juros</returns>
         </member>
         <member name="M:SoftplanApi.Controllers.ShowMeTheCodeController.Get">
             <summary>
@@ -34,6 +23,16 @@
             Retorna o valor da taxa de juros
             </summary>
             <returns>Objeto com o valor da taxa de juros</returns>
+        </member>
+        <member name="P:SoftplanApi.TaxaJuros.TaxaJurosDecimal">
+            <summary>
+            Valor da taxa de juros em decimal
+            </summary>
+        </member>
+        <member name="P:SoftplanApi.TaxaJuros.TaxaJurosPercentagem">
+            <summary>
+            Valor da taxa de juros em percentagem
+            </summary>
         </member>
     </members>
 </doc>
