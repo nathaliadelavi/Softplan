@@ -1,5 +1,4 @@
-﻿using Microsoft.OpenApi.Any;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Linq;
 
@@ -29,12 +28,6 @@ namespace SoftplanCore.ApiBoot
                 if (routeInfo == null)
                 {
                     continue;
-                }
-
-                if (parameter.Schema.Default == null)
-                { 
-                    parameter.Schema.Default = 
-                        new OpenApiString(description.DefaultValue.ToString()); 
                 }
 
                 parameter.Required |= !routeInfo.IsOptional;
